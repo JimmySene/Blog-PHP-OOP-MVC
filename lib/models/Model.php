@@ -2,8 +2,6 @@
 
 namespace Models;
 
-require_once('lib/database.php');
-
 abstract class Model
 {
     protected $pdo;
@@ -11,7 +9,7 @@ abstract class Model
 
     function __construct()
     {
-        $this->pdo = getPdo();
+        $this->pdo = \Database::getPdo();
     }
 
       /**

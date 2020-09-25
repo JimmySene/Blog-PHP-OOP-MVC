@@ -2,8 +2,6 @@
 
 namespace Controllers;
 
-require_once('lib/utils.php');
-
 class Article extends Controller
 {
     protected $modelName = \Models\Article::class;
@@ -12,7 +10,7 @@ class Article extends Controller
     {
         $articles = $this->model->getAll('created_at DESC');
         $pageTitle = "Accueil";
-        render('articles/index', compact('pageTitle', 'articles'));
+        \Renderer::render('articles/index', compact('pageTitle', 'articles'));
     }
 
     public function show()
@@ -35,7 +33,7 @@ class Article extends Controller
         $commentaires = $commentModel->getAllWithArticle($article_id);
         
         $pageTitle = $article['title'];
-        render('articles/show', compact('pageTitle', 'article', 'commentaires', 'article_id'));
+        \Renderer::render('articles/show', compact('pageTitle', 'article', 'commentaires', 'article_id'));
     }
 
     public function delete()
@@ -53,6 +51,6 @@ class Article extends Controller
         
         $this->model->delete($id);
         
-        redirect('index.php');
+        \Http::redirect('index.php');
     }
 }
