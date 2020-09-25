@@ -1,5 +1,9 @@
 <?php
+
+namespace Models;
+
 require_once('lib/models/Model.php');
+
 class Comment extends Model
 {
     protected $table = "comments";

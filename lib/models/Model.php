@@ -1,4 +1,7 @@
 <?php
+
+namespace Models;
+
 require_once('lib/database.php');
 
 abstract class Model
