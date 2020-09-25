@@ -1,6 +1,7 @@
 <?php
 require_once('lib/database.php');
 require_once('lib/utils.php');
+require('lib/models/Comment.php');
 /**
  * DANS CE FICHIER ON CHERCHE A SUPPRIMER LE COMMENTAIRE DONT L'ID EST PASSE EN PARAMETRE GET !
  * 
@@ -14,14 +15,14 @@ if (empty($_GET['id']) || !ctype_digit($_GET['id'])) {
 
 $id = $_GET['id'];
 
-
-$commentaire = getComment($id);
+$commentModel = new Comment();
+$commentaire = $commentModel->get($id);
 if (!$commentaire) {
     die("Aucun commentaire n'a l'identifiant $id !");
 }
 
 $article_id = $commentaire['article_id'];
 
-deleteComment($id);
+$commentModel->delete($id);
 
 redirect("article.php?id=" . $article_id);

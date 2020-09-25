@@ -1,6 +1,8 @@
 <?php
 require_once('lib/database.php');
 require_once('lib/utils.php');
+require_once('lib/models/Article.php');
+require_once('lib/models/Comment.php');
 /**
  * CE FICHIER DOIT AFFICHER UN ARTICLE ET SES COMMENTAIRES !
  * 
@@ -33,13 +35,15 @@ if (!$article_id) {
  * On va ici utiliser une requête préparée car elle inclue une variable qui provient de l'utilisateur : Ne faites
  * jamais confiance à ce connard d'utilisateur ! :D
  */
-$article = getArticle($article_id);
+$articleModel = new Article();
+$article = $articleModel->get($article_id);
 
 /**
  * 4. Récupération des commentaires de l'article en question
  * Pareil, toujours une requête préparée pour sécuriser la donnée filée par l'utilisateur (cet enfoiré en puissance !)
  */
-$commentaires = getAllComments($article_id);
+$commentModel = new Comment();
+$commentaires = $commentModel->getAll($article_id);
 
 /**
  * 5. On affiche 

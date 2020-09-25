@@ -1,6 +1,7 @@
 <?php
 require_once('lib/database.php');
 require_once('lib/utils.php');
+require_once('lib/models/Article.php');
 /**
  * CE FICHIER A POUR BUT D'AFFICHER LA PAGE D'ACCUEIL !
  * 
@@ -8,7 +9,8 @@ require_once('lib/utils.php');
  * puis on va boucler dessus pour afficher chacun d'entre eux
  */
 
-$articles = getAllArticles();
+$articleModel = new Article();
+$articles = $articleModel->getAll();
 
 /**
  * 3. Affichage

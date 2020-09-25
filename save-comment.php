@@ -1,6 +1,8 @@
 <?php
 require_once('lib/database.php');
 require_once('lib/utils.php');
+require_once('lib/models/Article.php');
+require_once('lib/models/Comment.php');
 /**
  * CE FICHIER DOIT ENREGISTRER UN NOUVEAU COMMENTAIRE EST REDIRIGER SUR L'ARTICLE !
  * 
@@ -45,8 +47,8 @@ if (!$author || !$article_id || !$content) {
     die("Votre formulaire a été mal rempli !");
 }
 
-
-$article = getArticle($article_id);
+$articleModel = new Article();
+$article = $articleModel->get($article_id);
 
 // Si rien n'est revenu, on fait une erreur
 if (!$article) {
@@ -54,7 +56,8 @@ if (!$article) {
 }
 
 // 3. Insertion du commentaire
-insertComment($article_id, $content, $author);
+$commentModel = new Comment();
+$commentModel->insert($article_id, $content, $author);
 
 // 4. Redirection vers l'article en question :
 redirect('article.php?id=' . $article_id);
