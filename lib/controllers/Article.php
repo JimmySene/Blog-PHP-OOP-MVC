@@ -3,17 +3,10 @@
 namespace Controllers;
 
 require_once('lib/utils.php');
-require_once('lib/models/Article.php');
-require_once('lib/models/Comment.php');
 
-class Article
+class Article extends Controller
 {
-    protected $model;
-
-    public function __construct()
-    {
-        $this->model = new \Models\Article();
-    }
+    protected $modelName = \Models\Article::class;
 
     public function index()
     {

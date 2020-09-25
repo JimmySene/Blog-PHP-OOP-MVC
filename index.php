@@ -1,4 +1,4 @@
 <?php
-require_once('lib/controllers/Article.php');
+require_once('lib/autoload.php');
 $articleController = new \Controllers\Article();
 $articleController->index();
