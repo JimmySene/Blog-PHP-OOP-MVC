@@ -10,7 +10,7 @@ require_once('lib/models/Article.php');
  */
 
 $articleModel = new Article();
-$articles = $articleModel->getAll();
+$articles = $articleModel->getAll('created_at DESC');
 
 /**
  * 3. Affichage
