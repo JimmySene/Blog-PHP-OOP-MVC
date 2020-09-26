@@ -53,4 +53,20 @@ class Article extends Controller
         
         \Http::redirect('index.php');
     }
+
+    public function add()
+    {
+        $pageTitle = "Ajouter un article";
+        \Renderer::render('articles/add', compact('pageTitle'));
+    }
+
+    public function save()
+    {
+        if(!empty($_POST['title']) && !empty($_POST['introduction']) && !empty($_POST['content']))
+        {
+            $this->model->save($_POST);
+        } 
+
+        \Http::redirect('/');
+    }
 }

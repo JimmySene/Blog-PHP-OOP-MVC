@@ -9,6 +9,12 @@
 </head>
 
 <body>
+    <nav>
+        <ul>
+            <li><a href="/">Accueil</a></li>
+            <li><a href="index.php?controller=article&task=add">Ajouter un article</a></li>
+        </ul>
+    </nav>
     <?= $pageContent ?>
 </body>
 
